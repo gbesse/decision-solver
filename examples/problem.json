@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "description": "Fictional guard and merchant actions sharing a two-unit energy budget.",
+  "variables": [
+    {"id":"guard","options":[{"id":"attack","description":"Attack the intruder","score":0.9,"resources":{"energy":2}},{"id":"talk","description":"Talk to the visitor","score":0.7,"resources":{"energy":1}},{"id":"wait","description":"Wait","score":0.1,"resources":{}}]},
+    {"id":"merchant","options":[{"id":"trade","description":"Trade with the visitor","score":0.8,"resources":{"energy":1}},{"id":"wait","description":"Wait","score":0.2,"resources":{}}]}
+  ],
+  "constraints":[{"type":"budget","resource":"energy","limit":2},{"type":"forbid","assignments":{"guard":"attack","merchant":"trade"}}]
+}
