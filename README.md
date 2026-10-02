@@ -18,7 +18,7 @@ node bin/decision-solver.mjs examples/problem.json /tmp/assignment.json
 
 The example coordinates a guard and merchant under an energy budget: talking plus trading beats an incompatible higher-scoring attack. Results distinguish `optimal`, `unsatisfiable` and `incomplete`. A state-budget cutoff never claims optimality, even when it found a feasible assignment.
 
-Install as a dependency with `npm install github:gbesse/decision-solver#v0.1.0`.
+Install as a dependency with `npm install github:gbesse/decision-solver#v0.1.1`.
 
 ## API and constraints
 
@@ -51,6 +51,10 @@ node bin/decision-solver.mjs examples/problem.json /tmp/jev-assignment.json --je
 `solveWithJev(problem, state, { provider, signal, maxStates })` is exported from `@gbesse/decision-solver/jev`. Each nontrivial variable becomes a choice question to pinned `jev-1.13.0`. The solver maximizes the sum of marginal option probabilities. **This is not the joint probability of the complete assignment.** Single-option variables do not require a model call.
 
 [Backend plugins](docs/plugins.md) can connect CP-SAT or another optimizer. Their returned assignments are independently checked against an immutable copy of the original constraints; their optimality claims are not verified. No CP-SAT dependency or integration is included in this release.
+
+## Shareable demo report
+
+Run `npm run demo:report` to capture this repository’s bundled example as one JSON object with the project purpose, version and complete demo output. The command fails if the demo fails, so the report is useful when sharing a reproducible first look or reporting unexpected behavior. The bundled demo’s data and safety boundaries still apply.
 
 ## Validation and limits
 
