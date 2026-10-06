@@ -8,6 +8,8 @@ Turn independently scored choices into a globally valid assignment under explici
 
 ## Try it
 
+Run `node examples/infeasible.mjs` to see a zero-energy budget combined with a ban on the only zero-energy assignment. The exact solver returns `unsatisfiable` with a complete search, not a fabricated fallback. / L'exemple montre une recherche complète sans affectation possible. / El ejemplo muestra una búsqueda completa sin asignación posible.
+
 ```sh
 git clone https://github.com/gbesse/decision-solver.git
 cd decision-solver

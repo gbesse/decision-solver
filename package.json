@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/decision-solver",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Combine typed preferences with exact finite constraints and explicit search completeness.",
   "type": "module",
   "exports": {
