@@ -9,3 +9,5 @@ export function satisfies(problem: Problem, assignment: Assignment): boolean;
 export function solve(problem: Problem, options?: { maxStates?: number; signal?: AbortSignal }): Result;
 export type Backend = (problem: Problem, options: { signal: AbortSignal }) => Promise<{ assignment: Assignment }>;
 export function solveWith(problem: Problem, backend: Backend, options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<{ assignment: Assignment; constraintsVerified: true; optimalityVerified: false; execution: 'not_executed' }>;
+
+export function explainAssignment(problem:Problem,assignment:unknown):{valid:boolean;findings:Array<Record<string,unknown>>;utility:number|null;execution?:string};

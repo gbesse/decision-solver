@@ -69,3 +69,14 @@ export async function solveWith(problem, backend, options = {}) {
   ensure(result.assignment && satisfies(safe, result.assignment), 'Backend returned an invalid assignment');
   return { assignment: result.assignment, constraintsVerified: true, optimalityVerified: false, execution: 'not_executed' };
 }
+
+export function explainAssignment(problem,assignment){
+ validateProblem(problem);snapshot(assignment);const findings=[];
+ if(!assignment||typeof assignment!=='object'||Array.isArray(assignment))return {valid:false,findings:[{code:'assignment_object_required'}],utility:null};
+ for(const key of Object.keys(assignment))if(!problem.variables.some(v=>v.id===key))findings.push({code:'unknown_variable',variable:key});
+ const chosen=[];
+ for(const v of problem.variables){const option=v.options.find(o=>o.id===assignment[v.id]);if(!option)findings.push({code:Object.hasOwn(assignment,v.id)?'unknown_option':'missing_variable',variable:v.id});else chosen.push(option);}
+ const match=a=>Object.entries(a).every(([k,v])=>assignment[k]===v);
+ problem.constraints.forEach((c,index)=>{if(c.type==='forbid'&&match(c.assignments))findings.push({code:'forbidden_combination',constraint:index});else if(c.type==='requires'&&match(c.when)&&!match(c.then))findings.push({code:'missing_required_combination',constraint:index});else if(c.type==='budget'){const used=chosen.reduce((s,o)=>s+(o.resources[c.resource]??0),0);if(used>c.limit)findings.push({code:'budget_exceeded',constraint:index,resource:c.resource,used,limit:c.limit});}});
+ return {valid:findings.length===0,findings,utility:chosen.length===problem.variables.length?chosen.reduce((s,o)=>s+o.score,0):null,execution:'not_executed'};
+}
