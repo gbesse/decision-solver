@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {explainAssignment,satisfies}from '../src/index.mjs';const p={schemaVersion:1,variables:[{id:'v',options:[{id:'a',description:'a',score:1,resources:{cost:10}},{id:'b',description:'b',score:0,resources:{cost:2}}]}],constraints:[{type:'budget',resource:'cost',limit:5}]};
+test('budget explanation carries witness',()=>{const x=explainAssignment(p,{v:'a'});assert.deepEqual(x.findings,[{code:'budget_exceeded',constraint:0,resource:'cost',used:10,limit:5}]);assert.equal(x.valid,satisfies(p,{v:'a'}));});
+test('missing choice is not an optimal assignment',()=>{const x=explainAssignment(p,{});assert.equal(x.utility,null);assert.equal(x.findings[0].code,'missing_variable');});
+test('valid explanation agrees with verifier',()=>assert.equal(explainAssignment(p,{v:'b'}).valid,true));

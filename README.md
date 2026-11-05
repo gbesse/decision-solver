@@ -67,3 +67,12 @@ Declared constraints are the complete safety boundary; undeclared real-world rul
 ## Where this can grow
 
 Contributed problem suites, domain constraint schemas and optimizer adapters are the intended shared asset. Prioritize cases with a verifiable optimum and meaningful infeasibility examples over model-specific wrappers.
+
+
+## 2026-11-05 — FR / EN / ES
+
+FR : `explainAssignment(problem, assignment)` donne des témoins de contraintes violées : variable absente, option inconnue, combinaison interdite, implication ou budget avec montant utilisé. Aucun solveur externe appelé ni action exécutée.
+
+EN: `explainAssignment(problem, assignment)` provides violated-constraint witnesses: missing variables, unknown options, forbidden combinations, implications or budgets with used amounts. No external solver calls or execution.
+
+ES: `explainAssignment(problem, assignment)` aporta testigos de restricciones violadas: variables ausentes, opciones desconocidas, combinaciones prohibidas, implicaciones o presupuestos usados. Sin solver externo ni ejecución.
