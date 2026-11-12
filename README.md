@@ -76,3 +76,12 @@ FR : `explainAssignment(problem, assignment)` donne des témoins de contraintes 
 EN: `explainAssignment(problem, assignment)` provides violated-constraint witnesses: missing variables, unknown options, forbidden combinations, implications or budgets with used amounts. No external solver calls or execution.
 
 ES: `explainAssignment(problem, assignment)` aporta testigos de restricciones violadas: variables ausentes, opciones desconocidas, combinaciones prohibidas, implicaciones o presupuestos usados. Sin solver externo ni ejecución.
+
+
+## 2026-11-12 — FR / EN / ES
+
+FR : Obtenir plusieurs solutions distinctes classées avec statut explicite de recherche incomplète.
+
+EN: Return distinct ranked alternatives with explicit incomplete-search status.
+
+ES: Obtener alternativas distintas ordenadas con estado explícito de búsqueda incompleta.
