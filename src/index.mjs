@@ -80,3 +80,5 @@ export function explainAssignment(problem,assignment){
  problem.constraints.forEach((c,index)=>{if(c.type==='forbid'&&match(c.assignments))findings.push({code:'forbidden_combination',constraint:index});else if(c.type==='requires'&&match(c.when)&&!match(c.then))findings.push({code:'missing_required_combination',constraint:index});else if(c.type==='budget'){const used=chosen.reduce((s,o)=>s+(o.resources[c.resource]??0),0);if(used>c.limit)findings.push({code:'budget_exceeded',constraint:index,resource:c.resource,used,limit:c.limit});}});
  return {valid:findings.length===0,findings,utility:chosen.length===problem.variables.length?chosen.reduce((s,o)=>s+o.score,0):null,execution:'not_executed'};
 }
+
+export * from './sprint-nov12.mjs';

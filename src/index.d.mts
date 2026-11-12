@@ -11,3 +11,5 @@ export type Backend = (problem: Problem, options: { signal: AbortSignal }) => Pr
 export function solveWith(problem: Problem, backend: Backend, options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<{ assignment: Assignment; constraintsVerified: true; optimalityVerified: false; execution: 'not_executed' }>;
 
 export function explainAssignment(problem:Problem,assignment:unknown):{valid:boolean;findings:Array<Record<string,unknown>>;utility:number|null;execution?:string};
+
+export function rankedSolutions(problem:Problem,options?:{limit?:number;maxStates?:number;signal?:AbortSignal}):{solutions:any[];rankingVerified:boolean;searchSpaceExhausted:boolean;totalExplored:number;maximumTotalStates:number;execution:string};
